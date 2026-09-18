@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#060910" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fcfcfd" media="(prefers-color-scheme: light)" />
+
+    <title>DostSol Global — Outsource smarter. Operate better. Grow faster.</title>
+    <meta
+      name="description"
+      content="DostSol Global builds dedicated offshore teams for US and European companies — IT, accounting, marketing, HR, project management and more. Live in fourteen days."
+    />
+    <link rel="canonical" href="https://dostsol.com/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="DostSol Global" />
+    <meta property="og:title" content="DostSol Global — Outsource smarter. Operate better. Grow faster." />
+    <meta property="og:description" content="Dedicated offshore teams across eleven disciplines. Senior by default, governed by design, live in fourteen days." />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      // Apply the stored theme before first paint to avoid a flash.
+      (function () {
+        try {
+          var t = localStorage.getItem('dostsol-theme');
+          if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
