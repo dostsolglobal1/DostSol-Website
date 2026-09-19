@@ -1,13 +1,55 @@
 import { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import * as Icons from 'lucide-react';
+import {
+  Boxes,
+  Building2,
+  Calculator,
+  ClipboardList,
+  Clock,
+  Code2,
+  HardHat,
+  LineChart,
+  Palette,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  Star,
+  Target,
+  TrendingUp,
+  Truck,
+  Users,
+} from 'lucide-react';
 
 /* ------------------------------------------------------------------ icons -- */
 
-/** Resolves a lucide icon by name with a safe fallback. */
+/**
+ * Explicit registry rather than `import * as Icons` — the barrel import pulls
+ * the entire lucide set (~1 MB) into the main bundle.
+ */
+const ICONS = {
+  Boxes,
+  Building2,
+  Calculator,
+  ClipboardList,
+  Clock,
+  Code2,
+  HardHat,
+  LineChart,
+  Palette,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  Star,
+  Target,
+  TrendingUp,
+  Truck,
+  Users,
+};
+
+/** Resolves a registered icon by name, falling back to a neutral mark. */
 export function Icon({ name, className = 'h-5 w-5', ...rest }) {
-  const Cmp = Icons[name] || Icons.Sparkles;
+  const Cmp = ICONS[name] || Sparkles;
   return <Cmp className={className} aria-hidden="true" {...rest} />;
 }
 
@@ -150,7 +192,7 @@ export function Stars({ rating = 5, className = '' }) {
   return (
     <div className={`flex gap-0.5 ${className}`} aria-label={`${rating} out of 5`}>
       {Array.from({ length: 5 }, (_, i) => (
-        <Icons.Star
+        <Star
           key={i}
           className={`h-4 w-4 ${i < rating ? 'fill-gold text-gold' : 'text-line'}`}
           aria-hidden="true"

@@ -37,8 +37,9 @@ const leadSchema = z.object({
   subject: z.string().max(200).optional().or(z.literal('')),
   message: z.string().min(10, 'A sentence or two helps us route you correctly.').max(4000),
   source: z.string().max(60).optional(),
-  // Honeypot — real users never fill this.
-  website: z.string().max(0).optional().or(z.literal('')),
+  // Honeypot. Deliberately permissive: rejecting it here would tell a bot the
+  // field must be empty. It is inspected in the handler and silently discarded.
+  website: z.string().max(200).optional(),
 });
 
 router.post(

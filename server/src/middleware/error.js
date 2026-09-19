@@ -31,11 +31,14 @@ export function errorHandler(err, req, res, _next) {
     console.error(`[error] ${status} ${err.message}`);
   }
 
+  const CODES = { 400: 'BAD_REQUEST', 401: 'UNAUTHORIZED', 403: 'FORBIDDEN', 404: 'NOT_FOUND', 429: 'RATE_LIMITED' };
+
   res.status(status).json({
     ok: false,
-    error: err.code || 'SERVER_ERROR',
+    error: err.code || CODES[status] || 'SERVER_ERROR',
     message: status === 500 ? 'Something went wrong on our side.' : err.message,
-    ...(process.env.NODE_ENV === 'development' ? { stack: err.stack } : {}),
+    // Stacks only for genuine server faults — 4xx are expected outcomes, not bugs.
+    ...(process.env.NODE_ENV === 'development' && status >= 500 ? { stack: err.stack } : {}),
   });
 }
 

@@ -162,6 +162,7 @@ export const navigation = [
   },
   { label: 'How we work', href: '/how-we-work' },
   { label: 'About', href: '/about' },
+  { label: 'Our team', href: '/team' },
   { label: 'Insights', href: '/insights' },
   { label: 'Careers', href: '/careers' },
 ];
@@ -182,6 +183,7 @@ export const footerNav = [
     title: 'Company',
     links: [
       { label: 'About us', href: '/about' },
+      { label: 'Our team', href: '/team' },
       { label: 'How we work', href: '/how-we-work' },
       { label: 'Insights', href: '/insights' },
       { label: 'Careers', href: '/careers' },

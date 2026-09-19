@@ -24,6 +24,15 @@
   --c-violet: 109 62 208;
   --c-teal: 13 124 122;
   --c-shadow: 15 23 42;
+
+  /* Data-visualisation slots. Validated against the light card surface (#ffffff)
+     with scripts/validate_palette.js — all checks pass. Status colours are fixed
+     across themes and always ship with an icon + label, never colour alone. */
+  --c-viz-series: 29 78 216;
+  --c-viz-good: 12 163 12;
+  --c-viz-warning: 250 178 25;
+  --c-viz-critical: 208 59 59;
+
   color-scheme: light;
 }
 
@@ -42,6 +51,14 @@
   --c-violet: 167 132 255;
   --c-teal: 45 212 191;
   --c-shadow: 0 0 0;
+
+  /* Dark steps are selected for the dark surface, not an automatic flip.
+     #3987e5 passes the dark lightness band and 3:1 contrast on #0d111b. */
+  --c-viz-series: 57 135 229;
+  --c-viz-good: 12 163 12;
+  --c-viz-warning: 250 178 25;
+  --c-viz-critical: 208 59 59;
+
   color-scheme: dark;
 }
 
@@ -62,6 +79,10 @@
     --c-violet: 167 132 255;
     --c-teal: 45 212 191;
     --c-shadow: 0 0 0;
+    --c-viz-series: 57 135 229;
+    --c-viz-good: 12 163 12;
+    --c-viz-warning: 250 178 25;
+    --c-viz-critical: 208 59 59;
     color-scheme: dark;
   }
 }
