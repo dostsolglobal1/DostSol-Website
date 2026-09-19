@@ -4,7 +4,10 @@
   "private": true,
   "type": "module",
   "description": "DostSol Global — Premium. A MERN-stack rebuild of dostsol.com.",
-  "workspaces": ["client", "server"],
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
     "dev": "concurrently -n API,WEB -c magenta,cyan \"npm:dev:server\" \"npm:dev:client\"",
     "dev:server": "npm --workspace server run dev",
@@ -12,10 +15,13 @@
     "seed": "npm --workspace server run seed",
     "build": "npm --workspace client run build",
     "start": "npm --workspace server run start",
-    "lint": "npm --workspace client run lint"
+    "lint": "npm --workspace client run lint",
+    "seed:demo": "npm --workspace server run seed:demo --"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
   },
-  "engines": { "node": ">=20" }
+  "engines": {
+    "node": ">=20"
+  }
 }

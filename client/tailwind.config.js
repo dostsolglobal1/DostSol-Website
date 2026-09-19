@@ -9,6 +9,11 @@ export default {
       screens: { '2xl': '1280px' },
     },
     extend: {
+      // Full 1–100 opacity scale so fine-grained tints (brand/8, line/12) resolve,
+      // including inside @apply where arbitrary modifiers are not available.
+      opacity: Object.fromEntries(
+        Array.from({ length: 101 }, (_, i) => [i, String(i / 100)])
+      ),
       colors: {
         // Semantic tokens — resolved from CSS variables so both themes share components.
         canvas: 'rgb(var(--c-canvas) / <alpha-value>)',
@@ -26,6 +31,14 @@ export default {
         gold: 'rgb(var(--c-gold) / <alpha-value>)',
         violet: 'rgb(var(--c-violet) / <alpha-value>)',
         teal: 'rgb(var(--c-teal) / <alpha-value>)',
+        // Data-visualisation slots — validated with the dataviz palette checker.
+        // Kept separate from the brand ramp so a status colour never doubles as a series.
+        viz: {
+          series: 'rgb(var(--c-viz-series) / <alpha-value>)',
+          good: 'rgb(var(--c-viz-good) / <alpha-value>)',
+          warning: 'rgb(var(--c-viz-warning) / <alpha-value>)',
+          critical: 'rgb(var(--c-viz-critical) / <alpha-value>)',
+        },
       },
       fontFamily: {
         display: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],

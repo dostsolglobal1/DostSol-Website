@@ -23,5 +23,17 @@ export default defineConfig({
       },
     },
   },
-  build: { outDir: 'dist', sourcemap: false, chunkSizeWarningLimit: 900 },
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        // Keep the long-lived vendor code in its own cacheable chunks.
+        manualChunks: {
+          react: ['react', 'react-dom', 'react-router-dom'],
+          motion: ['framer-motion'],
+        },
+      },
+    },
+  },
 });
