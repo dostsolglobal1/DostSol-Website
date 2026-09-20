@@ -3,6 +3,7 @@ import Lead from '../models/Lead.js';
 import Subscriber from '../models/Subscriber.js';
 import Application from '../models/Application.js';
 import Post from '../models/Post.js';
+import TeamMember from '../models/TeamMember.js';
 import { asyncHandler } from '../middleware/error.js';
 import { protect, requireRole } from '../middleware/auth.js';
 import { requireDB } from '../middleware/dbGuard.js';
@@ -310,6 +311,108 @@ router.delete(
     if (!post) {
       res.status(404);
       throw new Error('Article not found.');
+    }
+    res.json({ ok: true, message: 'Deleted.' });
+  })
+);
+
+/* ------------------------------------------------------------------- team -- */
+
+const TEAM_STRINGS = ['name', 'role', 'bio', 'avatar', 'initials', 'linkedin', 'email'];
+
+/**
+ * Only the fields the editor owns, coerced to the shapes the schema expects —
+ * a form posts `focus` as a string and `order` as text.
+ */
+function teamFields(body = {}) {
+  const out = {};
+  for (const key of TEAM_STRINGS) {
+    if (body[key] !== undefined) out[key] = String(body[key] ?? '').trim();
+  }
+  if (body.focus !== undefined) {
+    const raw = Array.isArray(body.focus) ? body.focus : String(body.focus).split(',');
+    out.focus = raw.map((f) => String(f).trim()).filter(Boolean);
+  }
+  if (body.order !== undefined) out.order = Number(body.order) || 0;
+  if (body.published !== undefined) out.published = Boolean(body.published);
+  return out;
+}
+
+router.get(
+  '/team',
+  asyncHandler(async (req, res) => {
+    // Unlike the public route this returns unpublished members too.
+    const data = await TeamMember.find().sort({ order: 1, name: 1 }).lean();
+    res.json({ ok: true, count: data.length, data });
+  })
+);
+
+router.post(
+  '/team',
+  requireRole('admin', 'editor'),
+  asyncHandler(async (req, res) => {
+    const fields = teamFields(req.body);
+    if (!fields.name) {
+      res.status(400);
+      throw new Error('A team member needs a name.');
+    }
+    // New members land at the end of the team page rather than silently at the top.
+    if (req.body.order === undefined) {
+      const last = await TeamMember.findOne().sort({ order: -1 }).select('order').lean();
+      fields.order = (last?.order ?? 0) + 1;
+    }
+    const member = await TeamMember.create(fields);
+    res.status(201).json({ ok: true, data: member });
+  })
+);
+
+/**
+ * Persists the display order in one write. The client sends the full id list in
+ * its new order, so a reshuffle can never leave two members sharing a rank.
+ */
+router.patch(
+  '/team/reorder',
+  requireRole('admin', 'editor'),
+  asyncHandler(async (req, res) => {
+    const ids = Array.isArray(req.body.ids) ? req.body.ids : null;
+    if (!ids?.length) {
+      res.status(400);
+      throw new Error('Send the ordered list of member ids.');
+    }
+    await TeamMember.bulkWrite(
+      ids.map((id, i) => ({
+        updateOne: { filter: { _id: id }, update: { $set: { order: i + 1 } } },
+      }))
+    );
+    const data = await TeamMember.find().sort({ order: 1, name: 1 }).lean();
+    res.json({ ok: true, data });
+  })
+);
+
+router.patch(
+  '/team/:id',
+  requireRole('admin', 'editor'),
+  asyncHandler(async (req, res) => {
+    const member = await TeamMember.findByIdAndUpdate(req.params.id, teamFields(req.body), {
+      new: true,
+      runValidators: true,
+    });
+    if (!member) {
+      res.status(404);
+      throw new Error('Team member not found.');
+    }
+    res.json({ ok: true, data: member });
+  })
+);
+
+router.delete(
+  '/team/:id',
+  requireRole('admin'),
+  asyncHandler(async (req, res) => {
+    const member = await TeamMember.findByIdAndDelete(req.params.id);
+    if (!member) {
+      res.status(404);
+      throw new Error('Team member not found.');
     }
     res.json({ ok: true, message: 'Deleted.' });
   })
