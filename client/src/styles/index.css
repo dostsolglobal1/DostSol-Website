@@ -196,11 +196,11 @@
   .field {
     @apply w-full rounded-xl border border-line bg-surface px-4 py-3 text-[0.9375rem] text-ink
            placeholder:text-faint transition duration-200
-           focus:border-brand focus:outline-none focus:ring-4 focus:ring-brand/12;
+           focus:border-brand focus:outline-none focus:ring-4 focus:ring-brand/[0.12];
   }
 
   .field-error {
-    @apply border-red-500/70 focus:border-red-500 focus:ring-red-500/12;
+    @apply border-red-500/70 focus:border-red-500 focus:ring-red-500/[0.12];
   }
 
   .label {
