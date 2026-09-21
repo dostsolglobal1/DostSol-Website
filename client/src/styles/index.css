@@ -10,25 +10,35 @@
 
 :root,
 :root[data-theme='light'] {
-  --c-canvas: 252 252 253;
+  /* Light is the default theme: the site opens white and airy, as dostsol.com
+     does, and only goes dark when the visitor asks for it via the toggle. */
+  --c-canvas: 247 250 253;
   --c-surface: 255 255 255;
-  --c-raised: 246 247 250;
-  --c-line: 224 228 236;
-  --c-ink: 12 17 29;
-  --c-muted: 88 99 121;
-  --c-faint: 134 145 166;
-  --c-brand: 29 78 216;
-  --c-brand-soft: 59 130 246;
-  --c-brand-deep: 23 58 158;
-  --c-gold: 176 128 24;
+  --c-raised: 239 245 251;
+  --c-line: 223 231 241;
+  --c-ink: 12 24 56;
+  --c-muted: 74 90 118;
+  --c-faint: 92 110 138;
+  --c-brand: 30 95 239;
+  --c-brand-soft: 91 140 255;
+  --c-brand-deep: 21 70 196;
+  --c-gold: 150 105 15;
   --c-violet: 109 62 208;
-  --c-teal: 13 124 122;
-  --c-shadow: 15 23 42;
+  --c-teal: 11 124 134;
+  --c-emerald: 4 120 87;
+  --c-indigo: 67 56 202;
+  --c-fuchsia: 162 28 175;
+  --c-cyan: 14 116 144;
+  --c-lime: 77 124 15;
+  --c-orange: 194 65 12;
+  --c-rose: 190 18 60;
+  --c-shadow: 12 24 56;
 
-  /* Data-visualisation slots. Validated against the light card surface (#ffffff)
-     with scripts/validate_palette.js — all checks pass. Status colours are fixed
-     across themes and always ship with an icon + label, never colour alone. */
-  --c-viz-series: 29 78 216;
+  /* Every token above carries >=4.5:1 against the surface it is used on, so the
+     accent colours stay legible as text and not just as decoration. The logo's
+     #23BDC7 is 2.29:1 on white, so it stays a graphic colour; --c-teal is the
+     darkened text-safe member of the same family. */
+  --c-viz-series: 30 95 239;
   --c-viz-good: 12 163 12;
   --c-viz-warning: 250 178 25;
   --c-viz-critical: 208 59 59;
@@ -37,54 +47,37 @@
 }
 
 :root[data-theme='dark'] {
-  --c-canvas: 6 9 16;
-  --c-surface: 13 17 27;
-  --c-raised: 19 25 38;
-  --c-line: 38 47 66;
-  --c-ink: 233 238 247;
-  --c-muted: 152 163 184;
-  --c-faint: 110 122 145;
-  --c-brand: 96 150 255;
+  /* Raised off near-black to a soft navy so the dark theme reads as dimmed
+     rather than switched off, and so the brand blue still has somewhere to sit. */
+  --c-canvas: 16 26 44;
+  --c-surface: 23 34 58;
+  --c-raised: 31 44 72;
+  --c-line: 46 61 92;
+  --c-ink: 234 240 250;
+  --c-muted: 163 177 202;
+  --c-faint: 126 140 166;
+  --c-brand: 94 155 255;
   --c-brand-soft: 134 174 255;
   --c-brand-deep: 47 96 200;
   --c-gold: 233 185 88;
   --c-violet: 167 132 255;
-  --c-teal: 45 212 191;
+  --c-teal: 63 211 221;
+  --c-emerald: 52 211 153;
+  --c-indigo: 139 156 255;
+  --c-fuchsia: 232 121 249;
+  --c-cyan: 77 212 240;
+  --c-lime: 163 230 53;
+  --c-orange: 251 146 60;
+  --c-rose: 251 113 133;
   --c-shadow: 0 0 0;
 
-  /* Dark steps are selected for the dark surface, not an automatic flip.
-     #3987e5 passes the dark lightness band and 3:1 contrast on #0d111b. */
-  --c-viz-series: 57 135 229;
+  /* Dark steps are chosen for the dark surface, not flipped automatically. */
+  --c-viz-series: 94 155 255;
   --c-viz-good: 12 163 12;
   --c-viz-warning: 250 178 25;
   --c-viz-critical: 208 59 59;
 
   color-scheme: dark;
-}
-
-/* Respect the OS when the visitor has not chosen a theme. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --c-canvas: 6 9 16;
-    --c-surface: 13 17 27;
-    --c-raised: 19 25 38;
-    --c-line: 38 47 66;
-    --c-ink: 233 238 247;
-    --c-muted: 152 163 184;
-    --c-faint: 110 122 145;
-    --c-brand: 96 150 255;
-    --c-brand-soft: 134 174 255;
-    --c-brand-deep: 47 96 200;
-    --c-gold: 233 185 88;
-    --c-violet: 167 132 255;
-    --c-teal: 45 212 191;
-    --c-shadow: 0 0 0;
-    --c-viz-series: 57 135 229;
-    --c-viz-good: 12 163 12;
-    --c-viz-warning: 250 178 25;
-    --c-viz-critical: 208 59 59;
-    color-scheme: dark;
-  }
 }
 
 @layer base {

@@ -216,6 +216,12 @@ export function Spinner({ className = 'h-4 w-4' }) {
 }
 
 /** Accent colour map shared by service cards and detail pages. */
+/**
+ * One entry per service, so every practice carries its own hue rather than
+ * cycling through four. Class names are written out in full because Tailwind
+ * scans source text — a template-built `text-${key}` would never be generated.
+ * Every colour clears 4.5:1 on both the light and dark card surface.
+ */
 export const ACCENTS = {
   brand: {
     text: 'text-brand',
@@ -224,12 +230,12 @@ export const ACCENTS = {
     ring: 'group-hover:border-brand/45',
     glowFrom: 'from-brand/18',
   },
-  gold: {
-    text: 'text-gold',
-    bg: 'bg-gold/10',
-    border: 'border-gold/25',
-    ring: 'group-hover:border-gold/45',
-    glowFrom: 'from-gold/18',
+  emerald: {
+    text: 'text-emerald',
+    bg: 'bg-emerald/10',
+    border: 'border-emerald/25',
+    ring: 'group-hover:border-emerald/45',
+    glowFrom: 'from-emerald/18',
   },
   violet: {
     text: 'text-violet',
@@ -244,6 +250,55 @@ export const ACCENTS = {
     border: 'border-teal/25',
     ring: 'group-hover:border-teal/45',
     glowFrom: 'from-teal/18',
+  },
+  indigo: {
+    text: 'text-indigo',
+    bg: 'bg-indigo/10',
+    border: 'border-indigo/25',
+    ring: 'group-hover:border-indigo/45',
+    glowFrom: 'from-indigo/18',
+  },
+  fuchsia: {
+    text: 'text-fuchsia',
+    bg: 'bg-fuchsia/10',
+    border: 'border-fuchsia/25',
+    ring: 'group-hover:border-fuchsia/45',
+    glowFrom: 'from-fuchsia/18',
+  },
+  cyan: {
+    text: 'text-cyan',
+    bg: 'bg-cyan/10',
+    border: 'border-cyan/25',
+    ring: 'group-hover:border-cyan/45',
+    glowFrom: 'from-cyan/18',
+  },
+  gold: {
+    text: 'text-gold',
+    bg: 'bg-gold/10',
+    border: 'border-gold/25',
+    ring: 'group-hover:border-gold/45',
+    glowFrom: 'from-gold/18',
+  },
+  lime: {
+    text: 'text-lime',
+    bg: 'bg-lime/10',
+    border: 'border-lime/25',
+    ring: 'group-hover:border-lime/45',
+    glowFrom: 'from-lime/18',
+  },
+  orange: {
+    text: 'text-orange',
+    bg: 'bg-orange/10',
+    border: 'border-orange/25',
+    ring: 'group-hover:border-orange/45',
+    glowFrom: 'from-orange/18',
+  },
+  rose: {
+    text: 'text-rose',
+    bg: 'bg-rose/10',
+    border: 'border-rose/25',
+    ring: 'group-hover:border-rose/45',
+    glowFrom: 'from-rose/18',
   },
 };
 

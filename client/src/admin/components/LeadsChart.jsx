@@ -4,10 +4,9 @@ import { useState } from 'react';
  * Daily lead volume — a single series of discrete daily counts, so bars rather
  * than a line. One series means no legend: the title names it.
  *
- * Colour is a single validated hue (light #1D4ED8 / dark #3987e5), declared as
- * a CSS variable on the root so the theme toggle and the OS preference both
- * resolve in one place. Both steps pass the palette validator against this
- * project's card surfaces.
+ * Colour is a single validated hue (light #1E5FEF / dark #5E9BFF), declared as
+ * the --c-viz-series variable on the root so the theme toggle resolves it in
+ * one place. Both steps clear 4.5:1 against this project's card surfaces.
  */
 
 const PAD = { top: 16, right: 8, bottom: 26, left: 34 };

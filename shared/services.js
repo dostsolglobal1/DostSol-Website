@@ -55,7 +55,7 @@ export const services = [
     title: 'Accounting & Finance',
     tagline: 'Books closed, on time, every time',
     icon: 'Calculator',
-    accent: 'gold',
+    accent: 'emerald',
     featured: true,
     order: 2,
     summary:
@@ -180,7 +180,7 @@ export const services = [
     title: 'Project Management',
     tagline: 'Delivery you can plan around',
     icon: 'ClipboardList',
-    accent: 'brand',
+    accent: 'indigo',
     featured: true,
     order: 5,
     summary:
@@ -219,7 +219,7 @@ export const services = [
     title: 'Graphics & UI/UX Design',
     tagline: 'Interfaces that earn trust',
     icon: 'Palette',
-    accent: 'violet',
+    accent: 'fuchsia',
     featured: true,
     order: 6,
     summary:
@@ -258,7 +258,7 @@ export const services = [
     title: 'Supply Chain Management',
     tagline: 'From order to delivery',
     icon: 'Truck',
-    accent: 'teal',
+    accent: 'cyan',
     order: 7,
     summary:
       'Procurement, vendor management, logistics coordination and inventory control run as a continuous operation.',
@@ -324,7 +324,7 @@ export const services = [
     title: 'Facilities Management',
     tagline: 'Buildings that run themselves',
     icon: 'Building2',
-    accent: 'brand',
+    accent: 'lime',
     order: 9,
     summary:
       'Helpdesk, vendor coordination, compliance and space planning support for multi-site property portfolios.',
@@ -357,7 +357,7 @@ export const services = [
     title: 'Construction & Development',
     tagline: 'Support from bid to handover',
     icon: 'HardHat',
-    accent: 'gold',
+    accent: 'orange',
     order: 10,
     summary:
       'Estimating, submittals, document control and schedule support for contractors and developers.',
@@ -390,7 +390,7 @@ export const services = [
     title: 'Research & Analysis',
     tagline: 'Decisions backed by evidence',
     icon: 'Search',
-    accent: 'violet',
+    accent: 'rose',
     order: 11,
     summary:
       'Market research, competitive intelligence and data analysis delivered as briefs your leadership can act on.',

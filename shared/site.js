@@ -48,21 +48,25 @@ export const stats = [
 export const differentiators = [
   {
     icon: 'Target',
+    accent: 'brand',
     title: 'Senior by default',
     body: 'Every engagement is led by someone who has done the job, not someone who has read about it. No juniors billed as specialists.',
   },
   {
     icon: 'ShieldCheck',
+    accent: 'emerald',
     title: 'Governance built in',
     body: 'NDAs, role-scoped access, audit logging and documented handover are part of the setup, not a paid add-on.',
   },
   {
     icon: 'LineChart',
+    accent: 'violet',
     title: 'Reported against outcomes',
     body: 'You get a weekly written report tied to the metrics you named at kickoff. If a number moves the wrong way, you hear it from us first.',
   },
   {
     icon: 'Clock',
+    accent: 'orange',
     title: 'Live in fourteen days',
     body: 'Scoping, contracting and team assembly run in parallel. Most engagements are producing work inside two weeks.',
   },

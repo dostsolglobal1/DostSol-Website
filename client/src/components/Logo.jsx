@@ -1,26 +1,129 @@
-export default function Logo({ compact = false, className = '' }) {
-  return (
-    <span className={`flex items-center gap-2.5 ${className}`}>
-      <span className="relative grid h-9 w-9 place-items-center overflow-hidden rounded-[11px] bg-gradient-to-br from-brand-soft to-brand-deep shadow-soft">
-        <svg viewBox="0 0 64 64" className="h-full w-full" aria-hidden="true">
-          <path
-            d="M19 45V19h11.5C38.4 19 44 24.4 44 32s-5.6 13-13.5 13H19Zm7.8-6.4h3.4c4 0 6.6-2.6 6.6-6.6s-2.6-6.6-6.6-6.6h-3.4v13.2Z"
-            fill="#fff"
-          />
-        </svg>
-        <span className="absolute -right-3 -top-3 h-7 w-7 rounded-full bg-white/20 blur-md" />
-      </span>
+import { useId } from 'react';
 
-      {!compact && (
-        <span className="leading-none">
-          <span className="block font-display text-[1.0625rem] font-bold tracking-tight text-ink">
-            DostSol
-          </span>
-          <span className="mt-0.5 block text-[0.625rem] font-semibold uppercase tracking-[0.22em] text-faint">
-            Global
-          </span>
-        </span>
+/**
+ * Brand mark, drawn entirely as vector — no raster asset at any size.
+ *
+ * Palette sampled from the master artwork:
+ *   wordmark ramp  #1E5FEF → #2276E8 → #23BDC7
+ *   swoosh ramp    #23BDC7 → #1E6EE7
+ *   navy           #000F60   (flipped to white in the dark theme via currentColor)
+ *
+ * The wordmark is set in live text rather than outlined paths, so `textLength`
+ * pins each run to the artwork's exact width — the swoosh keeps its alignment
+ * even if the display font has not loaded yet.
+ */
+
+const RAMP = [
+  { offset: '0%', color: '#1E5FEF' },
+  { offset: '55%', color: '#2276E8' },
+  { offset: '100%', color: '#23BDC7' },
+];
+
+const DISPLAY = "'Plus Jakarta Sans', 'Inter', system-ui, sans-serif";
+
+/** The layered-arc D, used on its own where there is no room for the wordmark. */
+function Mark({ gradient }) {
+  return (
+    <g fill="none" stroke={`url(#${gradient})`} strokeLinecap="round">
+      <path d="M24 12A20 20 0 0 1 24 52" strokeWidth="5.5" />
+      <path d="M24 19A13 13 0 0 1 24 45" strokeWidth="5" />
+      <path d="M24 26A6 6 0 0 1 24 38" strokeWidth="4.5" />
+    </g>
+  );
+}
+
+export default function Logo({ compact = false, tagline = false, className = '' }) {
+  const uid = useId().replace(/:/g, '');
+  const textGrad = `dsl-text-${uid}`;
+  const swooshGrad = `dsl-swoosh-${uid}`;
+
+  if (compact) {
+    return (
+      <svg
+        viewBox="0 0 64 64"
+        role="img"
+        aria-label="DostSol Global"
+        className={className || 'h-9 w-9'}
+      >
+        <defs>
+          <linearGradient id={swooshGrad} x1="0" y1="1" x2="1" y2="0">
+            {RAMP.map((s) => (
+              <stop key={s.offset} offset={s.offset} stopColor={s.color} />
+            ))}
+          </linearGradient>
+        </defs>
+        <Mark gradient={swooshGrad} />
+      </svg>
+    );
+  }
+
+  return (
+    <svg
+      viewBox={tagline ? '0 0 1364 400' : '0 0 1364 372'}
+      role="img"
+      aria-label="DostSol Global — Dynamic Outsourcing & Solutions Team"
+      className={`w-auto text-[#000F60] dark:text-white ${className || 'h-9'}`}
+    >
+      <defs>
+        {/* Horizontal ramp pinned to the wordmark's own box, so both runs share it. */}
+        <linearGradient id={textGrad} x1="85" y1="0" x2="790" y2="0" gradientUnits="userSpaceOnUse">
+          {RAMP.map((s) => (
+            <stop key={s.offset} offset={s.offset} stopColor={s.color} />
+          ))}
+        </linearGradient>
+        <linearGradient id={swooshGrad} x1="58" y1="352" x2="792" y2="58" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#23BDC7" />
+          <stop offset="100%" stopColor="#1E6EE7" />
+        </linearGradient>
+      </defs>
+
+      {/* Swoosh: a tapered crescent rising from under the D to above the final L. */}
+      <path
+        d="M58 352C260 196 520 96 792 58C520 124 262 224 58 352Z"
+        fill={`url(#${swooshGrad})`}
+      />
+
+      <text
+        x="85"
+        y="265"
+        textLength="705"
+        lengthAdjust="spacingAndGlyphs"
+        fontFamily={DISPLAY}
+        fontSize="158"
+        fontWeight="800"
+        letterSpacing="-2"
+        fill={`url(#${textGrad})`}
+      >
+        DOSTSOL
+      </text>
+
+      <text
+        x="830"
+        y="265"
+        textLength="455"
+        lengthAdjust="spacingAndGlyphs"
+        fontFamily={DISPLAY}
+        fontSize="158"
+        fontWeight="500"
+        fill="currentColor"
+      >
+        Global
+      </text>
+
+      {tagline && (
+        <text
+          x="305"
+          y="365"
+          textLength="980"
+          lengthAdjust="spacingAndGlyphs"
+          fontFamily={DISPLAY}
+          fontSize="52"
+          fontWeight="700"
+          fill="currentColor"
+        >
+          Dynamic Outsourcing &amp; Solutions Team
+        </text>
       )}
-    </span>
+    </svg>
   );
 }

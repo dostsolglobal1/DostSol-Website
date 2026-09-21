@@ -17,11 +17,11 @@ import { Button, Icon, Reveal, RevealGroup, RevealItem, SectionHeader, accent } 
  */
 const BENCH = [
   { practice: 'Information Technology', slug: 'information-technology', icon: 'Code2', accent: 'brand', headcount: '12 specialists', seniority: '7 senior · 5 mid' },
-  { practice: 'Accounting & Finance', slug: 'accounting-finance', icon: 'Calculator', accent: 'gold', headcount: '9 specialists', seniority: 'ACCA / CPA-track' },
+  { practice: 'Accounting & Finance', slug: 'accounting-finance', icon: 'Calculator', accent: 'emerald', headcount: '9 specialists', seniority: 'ACCA / CPA-track' },
   { practice: 'SEO & Digital Marketing', slug: 'seo-digital-marketing', icon: 'TrendingUp', accent: 'violet', headcount: '8 specialists', seniority: '3 senior · 5 mid' },
   { practice: 'Human Resources', slug: 'human-resources', icon: 'Users', accent: 'teal', headcount: '5 specialists', seniority: 'CIPD-aligned' },
-  { practice: 'Project Management', slug: 'project-management', icon: 'ClipboardList', accent: 'brand', headcount: '6 specialists', seniority: 'PMP / Scrum certified' },
-  { practice: 'Graphics & UI/UX Design', slug: 'design-ux', icon: 'Palette', accent: 'violet', headcount: '6 specialists', seniority: '2 senior · 4 mid' },
+  { practice: 'Project Management', slug: 'project-management', icon: 'ClipboardList', accent: 'indigo', headcount: '6 specialists', seniority: 'PMP / Scrum certified' },
+  { practice: 'Graphics & UI/UX Design', slug: 'design-ux', icon: 'Palette', accent: 'fuchsia', headcount: '6 specialists', seniority: '2 senior · 4 mid' },
 ];
 
 const HIRING = [

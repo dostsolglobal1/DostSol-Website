@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 import { differentiators } from '@shared/site.js';
-import { Icon, Reveal, RevealGroup, RevealItem } from '@/components/ui';
+import { Icon, Reveal, RevealGroup, RevealItem, accent } from '@/components/ui';
 
 export default function Differentiators() {
   return (
@@ -33,17 +33,22 @@ export default function Differentiators() {
           </Reveal>
 
           <RevealGroup className="grid gap-5 sm:grid-cols-2">
-            {differentiators.map((d) => (
-              <RevealItem key={d.title} className="h-full">
-                <div className="card card-hover group h-full p-7">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl border border-brand/20 bg-brand/10 text-brand transition-transform duration-500 ease-premium group-hover:scale-105">
-                    <Icon name={d.icon} className="h-5 w-5" />
-                  </span>
-                  <h3 className="mt-5 text-lg leading-snug">{d.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">{d.body}</p>
-                </div>
-              </RevealItem>
-            ))}
+            {differentiators.map((d) => {
+              const a = accent(d.accent);
+              return (
+                <RevealItem key={d.title} className="h-full">
+                  <div className="card card-hover group h-full p-7">
+                    <span
+                      className={`grid h-11 w-11 place-items-center rounded-xl border ${a.border} ${a.bg} ${a.text} transition-transform duration-500 ease-premium group-hover:scale-105`}
+                    >
+                      <Icon name={d.icon} className="h-5 w-5" />
+                    </span>
+                    <h3 className="mt-5 text-lg leading-snug">{d.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted">{d.body}</p>
+                  </div>
+                </RevealItem>
+              );
+            })}
           </RevealGroup>
         </div>
       </div>

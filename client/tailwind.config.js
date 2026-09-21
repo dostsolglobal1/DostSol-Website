@@ -31,6 +31,13 @@ export default {
         gold: 'rgb(var(--c-gold) / <alpha-value>)',
         violet: 'rgb(var(--c-violet) / <alpha-value>)',
         teal: 'rgb(var(--c-teal) / <alpha-value>)',
+        emerald: 'rgb(var(--c-emerald) / <alpha-value>)',
+        indigo: 'rgb(var(--c-indigo) / <alpha-value>)',
+        fuchsia: 'rgb(var(--c-fuchsia) / <alpha-value>)',
+        cyan: 'rgb(var(--c-cyan) / <alpha-value>)',
+        lime: 'rgb(var(--c-lime) / <alpha-value>)',
+        orange: 'rgb(var(--c-orange) / <alpha-value>)',
+        rose: 'rgb(var(--c-rose) / <alpha-value>)',
         // Data-visualisation slots — validated with the dataviz palette checker.
         // Kept separate from the brand ramp so a status colour never doubles as a series.
         viz: {
