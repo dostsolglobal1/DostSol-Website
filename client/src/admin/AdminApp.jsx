@@ -11,6 +11,7 @@ const Leads = lazy(() => import('./pages/Leads'));
 const Applications = lazy(() => import('./pages/Applications'));
 const Subscribers = lazy(() => import('./pages/Subscribers'));
 const Posts = lazy(() => import('./pages/Posts'));
+const Team = lazy(() => import('./pages/Team'));
 
 function Booting() {
   return (
@@ -38,6 +39,7 @@ function Gate() {
           <Route path="applications" element={<Applications />} />
           <Route path="subscribers" element={<Subscribers />} />
           <Route path="posts" element={<Posts />} />
+          <Route path="team" element={<Team />} />
           <Route path="*" element={<Navigate to="/admin" replace />} />
         </Route>
       </Routes>

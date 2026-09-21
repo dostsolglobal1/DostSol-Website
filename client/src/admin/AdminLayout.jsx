@@ -11,6 +11,7 @@ import {
   Moon,
   Sun,
   Users,
+  UsersRound,
   X,
 } from 'lucide-react';
 
@@ -23,6 +24,7 @@ const NAV = [
   { to: '/admin/applications', label: 'Applications', icon: BriefcaseBusiness },
   { to: '/admin/subscribers', label: 'Subscribers', icon: Mail },
   { to: '/admin/posts', label: 'Articles', icon: FileText },
+  { to: '/admin/team', label: 'Team', icon: UsersRound },
 ];
 
 function ThemeToggle() {
