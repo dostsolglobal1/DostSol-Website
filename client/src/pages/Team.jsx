@@ -51,9 +51,18 @@ function MemberCard({ member }) {
   return (
     <div className="card card-hover group h-full overflow-hidden">
       <div className="relative border-b border-line bg-raised p-7">
-        <span className="grid h-20 w-20 place-items-center rounded-2xl bg-gradient-to-br from-brand-soft to-brand-deep font-display text-2xl font-bold text-white shadow-soft">
-          {member.initials || initials(member.name)}
-        </span>
+        {member.avatar ? (
+          <img
+            src={member.avatar}
+            alt=""
+            loading="lazy"
+            className="h-20 w-20 rounded-2xl border border-line object-cover shadow-soft"
+          />
+        ) : (
+          <span className="grid h-20 w-20 place-items-center rounded-2xl bg-gradient-to-br from-brand-soft to-brand-deep font-display text-2xl font-bold text-white shadow-soft">
+            {member.initials || initials(member.name)}
+          </span>
+        )}
 
         <h3 className="mt-5 font-display text-xl font-semibold leading-tight">{member.name}</h3>
         <p className="mt-1 text-sm font-medium text-brand">{member.role}</p>
@@ -71,7 +80,7 @@ function MemberCard({ member }) {
             </a>
           )}
           <a
-            href={`mailto:${company.email}`}
+            href={`mailto:${member.email || company.email}`}
             aria-label={`Email ${member.name}`}
             className="grid h-8 w-8 place-items-center rounded-full border border-line bg-surface text-faint transition duration-300 hover:border-brand/40 hover:text-brand"
           >
@@ -135,7 +144,7 @@ export default function Team() {
 
           <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {team.map((m) => (
-              <RevealItem key={m.name} className="h-full">
+              <RevealItem key={m._id || m.name} className="h-full">
                 <MemberCard member={m} />
               </RevealItem>
             ))}
