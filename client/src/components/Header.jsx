@@ -56,7 +56,10 @@ function ServicesMega({ onNavigate }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 6 }}
       transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-      className="absolute left-1/2 top-full z-50 w-[min(1120px,calc(100vw-3rem))] -translate-x-1/2 pt-3"
+      // Centred with inset-x-0 + mx-auto rather than -translate-x-1/2: Framer Motion
+      // writes transform inline for the y animation, which would override a
+      // translate utility class and drop the panel off the right edge.
+      className="absolute inset-x-0 top-full z-50 mx-auto w-full max-w-[1168px] px-6 pt-3"
     >
       <div className="overflow-hidden rounded-3xl border border-line bg-surface shadow-lift">
         <div className="grid gap-8 p-7 lg:grid-cols-[1.75fr_1fr]">
