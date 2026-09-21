@@ -77,11 +77,13 @@ export default function Logo({ compact = false, tagline = false, className = '' 
         </linearGradient>
       </defs>
 
-      {/* Swoosh: a tapered crescent rising from under the D to above the final L. */}
-      <path
-        d="M58 352C260 196 520 96 792 58C520 124 262 224 58 352Z"
-        fill={`url(#${swooshGrad})`}
-      />
+      {/* Swoosh: two tapered strokes, as in the artwork: a heavier one curling
+          under the D and a finer one arcing over SOL. The wordmark sits in the
+          gap between them, so the swoosh never crosses the letters. */}
+      <g fill={`url(#${swooshGrad})`}>
+        <path d="M60 344C130 350 220 326 298 294C210 300 124 316 60 344Z" />
+        <path d="M520 142C600 110 690 84 792 62C700 104 610 128 520 142Z" />
+      </g>
 
       <text
         x="85"

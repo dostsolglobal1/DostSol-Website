@@ -189,6 +189,11 @@ export default function Header() {
     closeTimer.current = setTimeout(() => setMegaOpen(false), 140);
   };
 
+  // While the transparent bar floats over the homepage's photographic hero, it
+  // borrows the dark tokens so the logo and links read against the scrim. Only
+  // the bar opts in — the mega menu and mobile drawer keep the site theme.
+  const overHero = pathname === '/' && !scrolled && !mobileOpen;
+
   return (
     <>
       <a
@@ -207,7 +212,7 @@ export default function Header() {
             : 'border-b border-transparent bg-transparent'
         }`}
       >
-        <div className="container">
+        <div className="container" data-theme={overHero ? 'dark' : undefined}>
           <div className="flex h-[74px] items-center justify-between gap-6">
             <Link to="/" className="shrink-0" aria-label="DostSol Global — home">
               <Logo />

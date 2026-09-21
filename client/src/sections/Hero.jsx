@@ -34,10 +34,10 @@ function EngagementPanel() {
       {/* Ambient glow */}
       <div
         aria-hidden="true"
-        className="absolute -inset-10 -z-10 rounded-full bg-gradient-to-tr from-brand/20 via-violet/10 to-transparent blur-3xl"
+        className="absolute -inset-10 -z-10 rounded-full bg-gradient-to-tr from-brand/30 via-teal/15 to-transparent blur-3xl"
       />
 
-      <div className="card overflow-hidden p-0 shadow-lift">
+      <div className="card overflow-hidden bg-surface/75 p-0 shadow-lift ring-1 ring-white/10 backdrop-blur-xl">
         <div className="flex items-center justify-between border-b border-line px-5 py-3.5">
           <div className="flex items-center gap-2">
             <span className="relative flex h-2 w-2">
@@ -101,7 +101,7 @@ function EngagementPanel() {
         initial={{ opacity: 0, y: 16, scale: 0.94 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ delay: 1.3, duration: 0.7, ease: EASE }}
-        className="absolute -bottom-6 -left-4 hidden rounded-2xl border border-line bg-surface px-4 py-3 shadow-lift sm:block"
+        className="absolute -bottom-12 -left-4 hidden rounded-2xl border border-line bg-surface/85 px-4 py-3 shadow-lift ring-1 ring-white/10 backdrop-blur-xl sm:block"
       >
         <div className="flex items-center gap-2.5">
           <div className="flex -space-x-2">
@@ -130,12 +130,42 @@ function EngagementPanel() {
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden pb-16 pt-32 md:pb-24 md:pt-40">
-      {/* Backdrop */}
+    // data-theme="dark" scopes the dark tokens to this section, so every card,
+    // button and text colour inside resolves against the navy scrim rather than
+    // the page's light canvas. `isolate` keeps the -z-10 backdrop above the
+    // section's own background colour.
+    <section
+      data-theme="dark"
+      className="relative isolate overflow-hidden bg-[#07112B] pb-16 pt-32 text-ink md:pb-24 md:pt-40 lg:flex lg:min-h-[min(100svh,1000px)] lg:flex-col lg:justify-center"
+    >
+      {/* Backdrop: the office photograph from dostsol.com under a brand scrim. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 grid-bg opacity-[0.55] mask-fade-b" />
-        <div className="absolute -left-40 -top-40 h-[34rem] w-[34rem] rounded-full bg-brand/12 blur-[120px]" />
-        <div className="absolute -right-32 top-20 h-[28rem] w-[28rem] rounded-full bg-violet/10 blur-[120px]" />
+        <picture>
+          <source
+            type="image/webp"
+            srcSet="/images/hero-960.webp 960w, /images/hero-1920.webp 1920w"
+            sizes="100vw"
+          />
+          <img
+            src="/images/hero-1920.jpg"
+            srcSet="/images/hero-960.jpg 960w, /images/hero-1920.jpg 1920w"
+            sizes="100vw"
+            alt=""
+            fetchpriority="high"
+            decoding="async"
+            className="h-full w-full object-cover object-right-bottom"
+          />
+        </picture>
+        {/* Scrim: solid navy behind the copy, opening up toward the photo. Below lg
+            the copy spans the full width, so the scrim stays even instead. */}
+        <div className="absolute inset-0 bg-[#07112B]/85 lg:bg-transparent lg:bg-gradient-to-r lg:from-[#07112B] lg:via-[#07112B]/85 lg:to-[#0A1A3F]/40" />
+        {/* Colour grade: pulls the warm photograph into the blue-to-teal brand ramp. */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-brand/30 via-transparent to-teal/20" />
+        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[#07112B]/80 to-transparent" />
+        <div className="absolute inset-0 grid-bg opacity-[0.18] mask-fade-b" />
+        <div className="grain absolute inset-0" />
+        <div className="absolute -left-40 -top-40 h-[34rem] w-[34rem] rounded-full bg-brand/25 blur-[120px]" />
+        <div className="absolute -bottom-40 right-0 h-[28rem] w-[28rem] rounded-full bg-teal/15 blur-[120px]" />
       </div>
 
       <div className="container">
@@ -159,7 +189,7 @@ export default function Hero() {
             <motion.h1 variants={rise} custom={1} className="mt-6 text-display">
               Outsource smarter.
               <br />
-              <span className="bg-gradient-to-br from-brand-soft via-brand to-violet bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-brand-soft via-brand to-teal bg-clip-text text-transparent">
                 Operate better.
               </span>
               <br />
