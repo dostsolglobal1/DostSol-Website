@@ -15,6 +15,7 @@
   --navy-900: #0A1428;
   --navy-800: #101D3A;
   --navy-700: #1A2A50;
+  --hero-bg: linear-gradient(165deg, #1B3266 0%, #142852 45%, #0F1F42 100%);
 
   --ink: #0B1324;
   --body: #475069;
@@ -208,7 +209,7 @@ p { margin: 0; text-wrap: pretty; }
 
 /* ---------- Hero (home) ---------- */
 .hero {
-  position: relative; background: var(--navy-950); color: var(--on-dark-muted);
+  position: relative; background: var(--hero-bg); color: var(--on-dark-muted);
   padding: 196px 0 120px; overflow: hidden; isolation: isolate;
 }
 .glow { position: absolute; border-radius: 50%; filter: blur(80px); z-index: -1; pointer-events: none; }
@@ -264,7 +265,7 @@ p { margin: 0; text-wrap: pretty; }
 @keyframes pulse { 0%,100% { box-shadow: 0 0 0 4px rgba(52,211,153,.2); } 50% { box-shadow: 0 0 0 8px rgba(52,211,153,0); } }
 
 /* ---------- Marquee (industries) ---------- */
-.marquee-band { background: var(--navy-900); border-top: 1px solid var(--line-dark); padding: 26px 0; overflow: hidden; }
+.marquee-band { background: #0F1F42; border-top: 1px solid var(--line-dark); padding: 26px 0; overflow: hidden; }
 .marquee-band .label { text-align: center; font-size: 12.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--on-dark-muted); margin-bottom: 16px; }
 .marquee { display: flex; width: max-content; animation: scroll 40s linear infinite; }
 .marquee-band:hover .marquee { animation-play-state: paused; }
@@ -445,7 +446,7 @@ p { margin: 0; text-wrap: pretty; }
 .cta-band .contact-mini svg { width: 16px; height: 16px; }
 
 /* ---------- Page hero (inner pages) ---------- */
-.page-hero { position: relative; background: var(--navy-950); color: var(--on-dark-muted); padding: 190px 0 100px; overflow: hidden; isolation: isolate; }
+.page-hero { position: relative; background: var(--hero-bg); color: var(--on-dark-muted); padding: 190px 0 100px; overflow: hidden; isolation: isolate; }
 .page-hero::before, .page-hero::after {
   content: ""; position: absolute; z-index: -1; border-radius: 50%; top: 50%; pointer-events: none;
   background: var(--grad);
@@ -577,6 +578,43 @@ p { margin: 0; text-wrap: pretty; }
 .to-top { position: fixed; right: 24px; bottom: 24px; z-index: 40; width: 50px; height: 50px; border-radius: 50%; border: 0; background: var(--grad); color: #fff; display: grid; place-items: center; box-shadow: var(--shadow); opacity: 0; transform: translateY(12px); transition: opacity .3s, transform .3s; pointer-events: none; }
 .to-top.show { opacity: 1; transform: none; pointer-events: auto; }
 .to-top svg { width: 20px; height: 20px; }
+
+/* =========================================================
+   LIGHT THEME — header + heroes
+   ========================================================= */
+:root { --hero-bg: linear-gradient(180deg, #F3F7FE 0%, #FFFFFF 100%); }
+
+/* header — dark bar so the logo (white "Global") stays visible */
+.site-header { background: var(--navy-900); border-color: var(--line-dark); }
+.topbar { background: var(--navy-950); }
+.site-header.scrolled { background: rgba(10,20,40,.94); }
+
+/* home hero */
+.hero { color: var(--body); border-bottom: 1px solid var(--line); }
+.hero::before { /* soft brand tint, right side only */
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse 45% 60% at 82% 45%, rgba(42,212,197,.12), transparent 70%),
+              radial-gradient(ellipse 40% 50% at 70% 30%, rgba(42,96,244,.10), transparent 70%);
+}
+.hero h1 { color: var(--ink); }
+.hero .lead { color: var(--body); }
+.pill { background: #fff; border-color: var(--line); color: var(--body); box-shadow: var(--shadow-sm); }
+.hero-trust { border-top-color: var(--line); }
+.hero-trust .t-num { color: var(--ink); }
+.hero-trust .t-lbl { color: var(--muted); }
+.hv-frame { box-shadow: 0 40px 80px -30px rgba(11,19,36,.35), 0 0 0 8px #fff, 0 0 0 9px var(--line); }
+.float-card { border: 1px solid var(--line); }
+.fc-3 { border-color: rgba(255,255,255,.14); }
+
+/* industries strip */
+.marquee-band { background: #fff; border-top: 0; border-bottom: 1px solid var(--line); }
+.marquee-band .label { color: var(--muted); }
+.marquee span { color: var(--ink); }
+.marquee span svg { color: var(--blue); }
+
+/* inner page heroes — dark, as before */
+.page-hero { background: var(--navy-950); }
+.crumbs .here { color: #fff; font-weight: 500; }
 
 /* ---------- Reveal animation ---------- */
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
