@@ -265,7 +265,7 @@ p { margin: 0; text-wrap: pretty; }
 @keyframes pulse { 0%,100% { box-shadow: 0 0 0 4px rgba(52,211,153,.2); } 50% { box-shadow: 0 0 0 8px rgba(52,211,153,0); } }
 
 /* ---------- Marquee (industries) ---------- */
-.marquee-band { background: #0F1F42; border-top: 1px solid var(--line-dark); padding: 26px 0; overflow: hidden; }
+.marquee-band { background: var(--navy-900); border-top: 1px solid var(--line-dark); padding: 26px 0; overflow: hidden; }
 .marquee-band .label { text-align: center; font-size: 12.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--on-dark-muted); margin-bottom: 16px; }
 .marquee { display: flex; width: max-content; animation: scroll 40s linear infinite; }
 .marquee-band:hover .marquee { animation-play-state: paused; }
@@ -605,12 +605,6 @@ p { margin: 0; text-wrap: pretty; }
 .hv-frame { box-shadow: 0 40px 80px -30px rgba(11,19,36,.35), 0 0 0 8px #fff, 0 0 0 9px var(--line); }
 .float-card { border: 1px solid var(--line); }
 .fc-3 { border-color: rgba(255,255,255,.14); }
-
-/* industries strip */
-.marquee-band { background: #fff; border-top: 0; border-bottom: 1px solid var(--line); }
-.marquee-band .label { color: var(--muted); }
-.marquee span { color: var(--ink); }
-.marquee span svg { color: var(--blue); }
 
 /* inner page heroes — dark, as before */
 .page-hero { background: var(--navy-950); }
