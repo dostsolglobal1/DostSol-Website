@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Services | DostSol Global</title>
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="services">
+<div id="header-slot"></div>
+<main id="svc"></main>
+<div id="footer-slot"></div>
+<script src="js/site.js"></script>
+<script>
+  /* One template renders all 11 service pages: service.html?s=<slug> */
+  const I = DS_ICON, S = DS_SERVICES;
+  const slug = new URLSearchParams(location.search).get("s") || "it";
+  const s = S.find(x => x.slug === slug) || S[0];
+  document.title = `${s.name} Outsourcing | DostSol Global`;
+  const capIcons = ["check","shield","layers","chart","zap","target","refresh","award"];
+  const featIcons = ["heart","target","lock","refresh","award"];
+
+  document.getElementById("svc").innerHTML = `
+  <section class="page-hero">
+    <div class="container hero-grid" style="align-items:end">
+      <div>
+        <nav class="crumbs reveal" aria-label="Breadcrumb"><a href="index.html">Home</a>${I("chevR")}<a href="services.html">Services</a>${I("chevR")}<span style="color:#fff">${s.name}</span></nav>
+        <h1 class="h-1 reveal d1">${s.title.replace(/(\S+\s\S+)\.$/, '<span class="grad-text">$1.</span>')}</h1>
+        <p class="lead reveal d2">${s.lead}</p>
+        <div class="hero-actions reveal d3">
+          <a class="btn btn-primary" href="contact.html">Get a free consultation ${I("arrow")}</a>
+          <a class="btn btn-ghost-dark" href="#capabilities">What's included</a>
+        </div>
+      </div>
+      <div class="reveal d2" style="display:flex;justify-content:flex-end">
+        <div style="width:150px;height:150px;border-radius:40px;background:var(--grad);display:grid;place-items:center;color:#fff;box-shadow:0 30px 60px -20px rgba(42,96,244,.6)">
+          <span style="width:64px;height:64px;display:block">${I(s.icon)}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="capabilities">
+    <div class="container sd-layout">
+      <div>
+        <span class="eyebrow reveal">Overview</span>
+        <h2 class="h-2 reveal d1" style="margin:18px 0 24px">${s.name} by DostSol Global</h2>
+        <div class="prose reveal d2">${s.body.map(p => `<p>${p}</p>`).join("")}</div>
+        <h3 class="h-3 reveal" style="margin-top:48px">What's included</h3>
+        <div class="cap-grid">${s.caps.map((c,i) => `<div class="cap reveal d${(i%2)+1}"><span class="ic">${I(capIcons[i%capIcons.length])}</span><strong>${c}</strong></div>`).join("")}</div>
+      </div>
+      <aside class="sidebar">
+        <div class="side-card reveal">
+          <h4>All services</h4>
+          <ul class="side-nav">${S.map(x => `<li><a class="${x.slug===s.slug?"on":""}" href="service.html?s=${x.slug}">${x.name}${I("chevR")}</a></li>`).join("")}</ul>
+        </div>
+        <div class="side-card dark reveal d1">
+          <h4>Talk to a specialist</h4>
+          <p>Get a tailored proposal for ${s.name.toLowerCase()}. No obligation.</p>
+          <a class="btn btn-primary btn-sm" href="contact.html">Book a call ${I("arrow")}</a>
+          <p style="margin:18px 0 0;font-size:14px"><a href="tel:+12816003570" style="color:#fff">${I("phone").replace("<svg","<svg style='width:14px;height:14px;vertical-align:-2px;margin-right:6px'")}(+1) 281 600 3570</a></p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section-sm bg-soft">
+    <div class="container">
+      <div class="section-head center" style="margin-bottom:40px"><span class="eyebrow reveal">Why it works</span><h2 class="h-2 reveal d1" style="margin-top:18px">Key benefits</h2></div>
+      <div class="benefits">${s.feats.map((f,i) => `<div class="benefit reveal d${(i%4)+1}"><span class="ic">${I(featIcons[i])}</span><strong>${f}</strong></div>`).join("")}</div>
+    </div>
+  </section>
+
+  <section class="section bg-dark">
+    <div class="container">
+      <div class="section-head center"><span class="eyebrow reveal">How it works</span><h2 class="h-1 reveal d1" style="margin-top:18px">From kickoff to results in four steps.</h2></div>
+      <div class="process">
+        <div class="step reveal d1"><div class="bubble">${I("handshake")}</div><h3>Engage & onboard</h3><p>We learn your needs, goals and workflows, then set clear expectations.</p></div>
+        <div class="step reveal d2"><div class="bubble">${I("book")}</div><h3>Transfer & execute</h3><p>Structured knowledge transfer so your team delivers from week one.</p></div>
+        <div class="step reveal d3"><div class="bubble">${I("chart")}</div><h3>Report & optimize</h3><p>Transparent reporting and continuous improvement as you scale.</p></div>
+        <div class="step reveal d4"><div class="bubble">${I("lock")}</div><h3>Govern & secure</h3><p>Compliance and strong data protection at every step.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-band reveal">
+        <div><h2 class="h-1">Ready to outsource ${s.name.toLowerCase()}?</h2><p>Get a free consultation and a tailored plan for your business.</p></div>
+        <div class="cta-side"><a class="btn btn-dark" href="contact.html">Get started ${I("arrow")}</a>
+          <div class="contact-mini"><a href="tel:+12816003570">${I("phone")}(+1) 281 600 3570</a><a href="mailto:info@dostsol.com">${I("mail")}info@dostsol.com</a></div></div>
+      </div>
+    </div>
+  </section>`;
+  DS_REVEAL();
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Outsourcing Services USA | DostSol Global</title>
+  <meta name="description" content="IT, HR, accounting, digital marketing, project management, design and more: 11 outsourcing services from DostSol Global.">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="services">
+<div id="header-slot"></div>
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="crumbs reveal" aria-label="Breadcrumb"><a href="index.html">Home</a><span data-icon="chevR"></span><span style="color:#fff">Services</span></nav>
+      <h1 class="h-display reveal d1">Beyond services.<br><span class="grad-text">Beyond boundaries.</span></h1>
+      <p class="lead reveal d2">Eleven specialist practices, one accountable partner. Pick a single function or build a complete offshore operation. We scale with you.</p>
+      <div class="hero-actions reveal d3"><a class="btn btn-primary" href="contact.html">Discuss your needs <span data-icon="arrow"></span></a></div>
+    </div>
+  </section>
+
+  <section class="section bg-soft">
+    <div class="container">
+      <div class="svc-grid" id="allServices"></div>
+    </div>
+  </section>
+
+  <section class="section bg-dark" style="overflow:hidden">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow reveal">How it works</span>
+        <h2 class="h-1 reveal d1" style="margin-top:18px">One proven model for every service.</h2>
+      </div>
+      <div class="process">
+        <div class="step reveal d1"><div class="bubble" data-icon="handshake"></div><h3>Engage & onboard</h3><p>We learn your needs, goals and workflows, then set clear expectations and success metrics.</p></div>
+        <div class="step reveal d2"><div class="bubble" data-icon="book"></div><h3>Transfer & execute</h3><p>Structured knowledge transfer equips your dedicated team to deliver efficiently from week one.</p></div>
+        <div class="step reveal d3"><div class="bubble" data-icon="chart"></div><h3>Report & optimize</h3><p>Transparent reporting, regular feedback loops and continuous improvement as you scale.</p></div>
+        <div class="step reveal d4"><div class="bubble" data-icon="lock"></div><h3>Govern & secure</h3><p>Regulatory compliance and strong data protection practices at every step of the work.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-band reveal">
+        <div><h2 class="h-1">Not sure which service fits?</h2><p>Tell us your challenge. We'll recommend the right combination of people, process and tools.</p></div>
+        <div class="cta-side"><a class="btn btn-dark" href="contact.html">Book a free consultation <span data-icon="arrow"></span></a>
+          <div class="contact-mini"><a href="tel:+12816003570"><span data-icon="phone"></span>(+1) 281 600 3570</a><a href="mailto:info@dostsol.com"><span data-icon="mail"></span>info@dostsol.com</a></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+<div id="footer-slot"></div>
+<script src="js/site.js"></script>
+<script>
+  document.getElementById("allServices").innerHTML = DS_SERVICES.map((s, i) => `
+    <a class="svc-card reveal d${(i%3)+1}" href="service.html?s=${s.slug}">
+      <span class="idx">${String(i+1).padStart(2,"0")}</span><span class="ic">${DS_ICON(s.icon)}</span>
+      <h3>${s.name}</h3><p>${s.lead}</p><span class="link-arrow">Explore ${DS_ICON("arrow")}</span></a>`).join("") +
+    `<a class="svc-card feature reveal d3" href="contact.html" style="grid-row:auto">
+      <span class="ic">${DS_ICON("rocket")}</span><h3 style="font-size:24px">Need a custom team?</h3>
+      <p>Combine any services into one dedicated, managed team built around your workflows.</p>
+      <span class="link-arrow">Talk to us ${DS_ICON("arrow")}</span></a>`;
+  DS_REVEAL();
+</script>
+</body>
+</html>

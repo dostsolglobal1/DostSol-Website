@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Team | DostSol Global</title>
+  <meta name="description" content="Meet the DostSol Global team: experienced professionals in finance, HR, technology and operations.">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="team">
+<div id="header-slot"></div>
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="crumbs reveal" aria-label="Breadcrumb"><a href="index.html">Home</a><span data-icon="chevR"></span><span style="color:#fff">Our Team</span></nav>
+      <h1 class="h-display reveal d1">The people behind<br><span class="grad-text">your growth.</span></h1>
+      <p class="lead reveal d2">Qualified finance, HR, technology and operations professionals, all working as a dependable extension of your business.</p>
+      <div class="hero-trust reveal d3" style="margin-top:40px">
+        <div><div class="t-num">18</div><div class="t-lbl">Dedicated professionals</div></div>
+        <div><div class="t-num"><span data-count="100">0</span>+</div><div class="t-lbl">Years combined experience</div></div>
+        <div><div class="t-num">MBA · ACCA · LUMS</div><div class="t-lbl">Qualifications on the team</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-soft">
+    <div class="container">
+      <div class="team-filter reveal" role="group" aria-label="Filter team">
+        <button class="on" data-f="all">Everyone</button>
+        <button data-f="leadership">Leadership</button>
+        <button data-f="finance">Finance & Accounting</button>
+        <button data-f="ops">Operations & Specialists</button>
+        <button data-f="tech">Technology</button>
+      </div>
+      <div class="team-grid" id="teamGrid"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-band reveal">
+        <div><h2 class="h-1">Want a team like this working for you?</h2><p>We'll assemble the right specialists for your workflows and manage them end to end.</p></div>
+        <div class="cta-side"><a class="btn btn-dark" href="contact.html">Build your team <span data-icon="arrow"></span></a>
+          <div class="contact-mini"><a href="mailto:info@dostsol.com"><span data-icon="mail"></span>Join us: info@dostsol.com</a></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+<div id="footer-slot"></div>
+<script src="js/site.js"></script>
+<script src="js/team-data.js"></script>
+<script>
+  const grid = document.getElementById("teamGrid");
+  grid.innerHTML = DS_TEAM.map((m, i) => DS_MEMBER_CARD(m, i, i === 0 ? "lead-card" : "")).join("");
+  DS_BIND_TEAM(grid);
+  DS_REVEAL();
+  document.querySelector(".team-filter").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    document.querySelectorAll(".team-filter button").forEach(x => x.classList.toggle("on", x === b));
+    const f = b.dataset.f;
+    grid.querySelectorAll(".member").forEach(m => m.classList.toggle("hide", f !== "all" && m.dataset.g !== f));
+    grid.querySelector(".lead-card")?.classList.toggle("lead-card-off", f !== "all");
+  });
+</script>
+</body>
+</html>
