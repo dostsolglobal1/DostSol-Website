@@ -7,6 +7,7 @@
     arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
     chev: '<path d="m6 9 6 6 6-6"/>',
     chevR: '<path d="m9 6 6 6-6 6"/>',
+    chevL: '<path d="m15 6-6 6 6 6"/>',
     check: '<path d="M20 6 9 17l-5-5"/>',
     plus: '<path d="M12 5v14M5 12h14"/>',
     x: '<path d="M18 6 6 18M6 6l12 12"/>',
@@ -276,6 +277,36 @@
   }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }) : null;
   window.DS_REVEAL = root => (root || document).querySelectorAll(".reveal:not(.in)").forEach(el => io ? io.observe(el) : el.classList.add("in"));
   window.DS_REVEAL();
+
+  /* ---------- Carousels (scroll-snap track + arrows, dots, autoplay) ---------- */
+  document.querySelectorAll("[data-carousel]").forEach(car => {
+    const track = car.querySelector("[data-track]"), slides = [...track.children];
+    const dots = car.querySelector("[data-dots]"), prev = car.querySelector("[data-prev]"), next = car.querySelector("[data-next]");
+    const perView = () => Math.max(1, Math.round(track.clientWidth / slides[0].getBoundingClientRect().width));
+    const pages = () => Math.max(1, slides.length - perView() + 1);
+    const current = () => Math.round(track.scrollLeft / (slides[1] ? slides[1].offsetLeft - slides[0].offsetLeft : 1));
+    const go = i => { const n = pages(); i = (i + n) % n; track.scrollTo({ left: slides[i].offsetLeft - slides[0].offsetLeft }); };
+    const render = () => {
+      const n = pages(), cur = Math.min(current(), n - 1);
+      if (dots.children.length !== n) {
+        dots.innerHTML = Array.from({ length: n }, (_, i) => `<button type="button" aria-label="Go to slide ${i + 1}"></button>`).join("");
+        [...dots.children].forEach((b, i) => b.addEventListener("click", () => { go(i); restart(); }));
+      }
+      [...dots.children].forEach((b, i) => b.setAttribute("aria-current", String(i === cur)));
+      car.querySelector(".car-controls").style.display = n > 1 ? "" : "none";
+    };
+    prev.addEventListener("click", () => { go(current() - 1); restart(); });
+    next.addEventListener("click", () => { go(current() + 1); restart(); });
+    track.addEventListener("scroll", () => requestAnimationFrame(render), { passive: true });
+    window.addEventListener("resize", render);
+
+    const reduce = STATIC || matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let timer = null, paused = false;
+    const restart = () => { clearInterval(timer); if (!reduce) timer = setInterval(() => { if (!paused && !document.hidden) go(current() + 1); }, 6000); };
+    ["mouseenter", "focusin", "touchstart"].forEach(ev => car.addEventListener(ev, () => { paused = true; }, { passive: true }));
+    ["mouseleave", "focusout", "touchend"].forEach(ev => car.addEventListener(ev, () => { paused = false; }, { passive: true }));
+    render(); restart();
+  });
 
   /* ---------- Counters ---------- */
   const counters = document.querySelectorAll("[data-count]");
