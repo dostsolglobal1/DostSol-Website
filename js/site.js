@@ -60,11 +60,11 @@
 
   /* ---------- Services data (copy from live site, tightened) ---------- */
   const SERVICES = [
-    { slug: "it", icon: "code", name: "IT Services", short: "Software, web, helpdesk & infrastructure",
-      title: "IT outsourcing that lets you work smarter.",
-      lead: "End-to-end IT services that improve efficiency, keep your systems secure and move digital transformation forward.",
-      body: ["DostSol Global provides end-to-end IT outsourcing built around how modern businesses actually run. We cover custom software and application development, IT support and helpdesk, website builds, infrastructure management, cybersecurity and data analytics.", "We pair current technology with proven industry standards to keep your operations running smoothly, your systems secure and your data working for your business."],
-      caps: ["IT Support & Helpdesk", "Website Development", "Infrastructure Management", "Cybersecurity Solutions", "Data Management", "Application Development", "Network Management", "Software Development"],
+    { slug: "it", icon: "code", name: "IT & AI Services", short: "Software, AI, web, helpdesk & infrastructure",
+      title: "IT and AI outsourcing that lets you work smarter.",
+      lead: "End-to-end IT and AI services that improve efficiency, automate routine work, keep your systems secure and move digital transformation forward.",
+      body: ["DostSol Global provides end-to-end IT outsourcing built around how modern businesses actually run. We cover custom software and application development, IT support and helpdesk, website builds, infrastructure management, cybersecurity and data analytics.", "Our AI services help you put artificial intelligence to practical use: AI chatbots and virtual assistants, workflow automation, machine learning models and AI integrations that plug into the tools you already use. We start with a clear business case, so every AI project saves time or cost you can measure.", "We pair current technology with proven industry standards to keep your operations running smoothly, your systems secure and your data working for your business."],
+      caps: ["AI Solutions & Automation", "AI Chatbots & Virtual Assistants", "IT Support & Helpdesk", "Website Development", "Infrastructure Management", "Cybersecurity Solutions", "Data Management", "Application Development", "Network Management", "Software Development"],
       feats: ["User-friendly UI/UX", "Goal-focused delivery", "Secure by design", "Smooth user flows", "Polished visuals"] },
     { slug: "hr", icon: "users", name: "HR Services", short: "Recruitment, onboarding, payroll & compliance",
       title: "HR solutions that empower your people.",
