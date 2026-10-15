@@ -271,7 +271,7 @@ p { margin: 0; text-wrap: pretty; }
 .marquee-band { background: var(--navy-900); border-top: 1px solid var(--line-dark); padding: 26px 0; overflow: hidden; }
 .marquee-band .label { text-align: center; font-size: 12.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--on-dark-muted); margin-bottom: 16px; }
 .marquee { display: flex; width: max-content; animation: scroll 40s linear infinite; }
-.marquee-band:hover .marquee { animation-play-state: paused; }
+@media (hover: hover) { .marquee-band:hover .marquee { animation-play-state: paused; } }
 .marquee span { display: inline-flex; align-items: center; gap: 12px; padding: 0 30px; color: #DCE4F5; font-family: var(--font-display); font-size: 19px; font-weight: 500; white-space: nowrap; }
 .marquee span svg { width: 20px; height: 20px; color: var(--teal); }
 @keyframes scroll { to { transform: translateX(-50%); } }
@@ -648,6 +648,10 @@ html.static *, html.static *::before, html.static *::after { animation: none !im
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
+  /* no auto-scroll: let the industries strip be swiped instead */
+  .marquee-band { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .marquee-band::-webkit-scrollbar { display: none; }
+  .marquee-band .label { position: sticky; left: 0; }
 }
 
 /* ---------- Blog ---------- */
