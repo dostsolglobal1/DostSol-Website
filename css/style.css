@@ -582,7 +582,7 @@ p { margin: 0; text-wrap: pretty; }
 /* =========================================================
    LIGHT THEME — header + heroes
    ========================================================= */
-:root { --hero-bg: linear-gradient(180deg, #F3F7FE 0%, #FFFFFF 100%); }
+:root { --hero-bg: linear-gradient(180deg, #E3EEFF 0%, #D4E4FF 100%); }
 
 /* header — dark bar so the logo (white "Global") stays visible */
 .site-header { background: var(--navy-900); border-color: var(--line-dark); }
@@ -606,9 +606,16 @@ p { margin: 0; text-wrap: pretty; }
 .float-card { border: 1px solid var(--line); }
 .fc-3 { border-color: rgba(255,255,255,.14); }
 
-/* inner page heroes — dark, as before */
-.page-hero { background: var(--navy-950); }
-.crumbs .here { color: #fff; font-weight: 500; }
+/* inner page heroes — light blue */
+.page-hero { background: var(--hero-bg); color: var(--body); border-bottom: 1px solid var(--line); }
+.page-hero h1 { color: var(--ink); }
+.page-hero .lead { color: var(--body); }
+.page-hero .crumbs { color: var(--muted); }
+.page-hero .crumbs a:hover { color: var(--blue); }
+.crumbs .here { color: var(--ink); font-weight: 500; }
+.page-hero .hero-trust { border-top-color: rgba(11,19,36,.12); }
+.page-hero .hero-trust .t-num { color: var(--ink); }
+.page-hero .hero-trust .t-lbl { color: var(--muted); }
 
 /* ---------- Reveal animation ---------- */
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
