@@ -20,6 +20,7 @@
   const slug = new URLSearchParams(location.search).get("s") || "it";
   const s = S.find(x => x.slug === slug) || S[0];
   document.title = `${s.name} Outsourcing | DostSol Global`;
+  const lower = s.name.replace(/[A-Za-z]+/g, w => /^(IT|AI|HR|SEO|UI|UX)$/.test(w) ? w : w.toLowerCase());
   const capIcons = ["check","shield","layers","chart","zap","target","refresh","award"];
   const featIcons = ["heart","target","lock","refresh","award"];
 
@@ -59,7 +60,7 @@
         </div>
         <div class="side-card dark reveal d1">
           <h4>Talk to a specialist</h4>
-          <p>Get a tailored proposal for ${s.name.toLowerCase()}. No obligation.</p>
+          <p>Get a tailored proposal for ${lower}. No obligation.</p>
           <a class="btn btn-primary btn-sm" href="contact.html">Book a call ${I("arrow")}</a>
           <p style="margin:18px 0 0;font-size:14px"><a href="tel:+12816003570" style="color:#fff">${I("phone").replace("<svg","<svg style='width:14px;height:14px;vertical-align:-2px;margin-right:6px'")}(+1) 281 600 3570</a></p>
         </div>
@@ -89,7 +90,7 @@
   <section class="section">
     <div class="container">
       <div class="cta-band reveal">
-        <div><h2 class="h-1">Ready to outsource ${s.name.toLowerCase()}?</h2><p>Get a free consultation and a tailored plan for your business.</p></div>
+        <div><h2 class="h-1">Ready to outsource ${lower}?</h2><p>Get a free consultation and a tailored plan for your business.</p></div>
         <div class="cta-side"><a class="btn btn-dark" href="contact.html">Get started ${I("arrow")}</a>
           <div class="contact-mini"><a href="tel:+12816003570">${I("phone")}(+1) 281 600 3570</a><a href="mailto:info@dostsol.com">${I("mail")}info@dostsol.com</a></div></div>
       </div>

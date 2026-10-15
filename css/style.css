@@ -101,6 +101,7 @@ p { margin: 0; text-wrap: pretty; }
 .section-head p { margin-top: 18px; }
 .section-head.split { max-width: none; display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: end; }
 .section-head.split p { margin-top: 0; }
+.section-head.split .sh-action { justify-self: end; }
 
 /* ---------- Buttons ---------- */
 .btn {
@@ -617,6 +618,10 @@ p { margin: 0; text-wrap: pretty; }
 .hero h1 { color: var(--ink); }
 .hero .lead { color: var(--body); }
 .pill { background: #fff; border-color: var(--line); color: var(--body); box-shadow: var(--shadow-sm); }
+a.pill { transition: border-color .25s, color .25s; }
+a.pill:hover { border-color: rgba(42,96,244,.45); color: var(--ink); }
+.pill svg { width: 15px; height: 15px; flex: 0 0 15px; transition: transform .25s var(--ease); }
+a.pill:hover svg { transform: translateX(3px); }
 .hero-trust { border-top-color: var(--line); }
 .hero-trust .t-num { color: var(--ink); }
 .hero-trust .t-lbl { color: var(--muted); }
@@ -730,6 +735,7 @@ html.static *, html.static *::before, html.static *::after { animation: none !im
   .sidebar { position: static; }
   .ceo .ph { max-width: 420px; }
   .section-head.split { grid-template-columns: 1fr; gap: 18px; }
+  .section-head.split .sh-action { justify-self: start; }
 }
 @media (max-width: 860px) {
   .section { padding: 84px 0; }
