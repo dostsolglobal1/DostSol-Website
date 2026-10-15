@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog | DostSol Global</title>
+  <meta name="description" content="Insights on outsourcing, IT services, accounting and SEO from DostSol Global.">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="blog">
+<div id="header-slot"></div>
+<main id="post"></main>
+<div id="footer-slot"></div>
+<script src="js/site.js"></script>
+<script src="js/blog-data.js"></script>
+<script>
+  /* One template renders every article: post.html?p=<slug> */
+  const I = DS_ICON, P = DS_POSTS;
+  const slug = new URLSearchParams(location.search).get("p");
+  const p = P.find(x => x.slug === slug) || P[0];
+  document.title = `${p.title} | DostSol Global`;
+  document.querySelector('meta[name="description"]').setAttribute("content", p.excerpt);
+  const related = [...P.filter(x => x !== p && x.category === p.category), ...P.filter(x => x !== p && x.category !== p.category)].slice(0, 3);
+
+  document.getElementById("post").innerHTML = `
+  <section class="page-hero">
+    <div class="container">
+      <nav class="crumbs reveal" aria-label="Breadcrumb"><a href="index.html">Home</a>${I("chevR")}<a href="blog.html">Blog</a>${I("chevR")}<span class="here">${p.category}</span></nav>
+      <h1 class="h-1 reveal d1 post-title">${p.title}</h1>
+      <div class="post-meta reveal d2"><span class="post-cat">${p.category}</span>${DS_POST_DATE(p)} · ${p.mins} min read</div>
+    </div>
+  </section>
+  <section class="section post-section">
+    <div class="container sd-layout">
+      <article>
+        <div class="post-cover reveal"><img src="${p.image}" alt=""></div>
+        <div class="prose article reveal d1">${p.content}</div>
+        <div class="post-share">
+          <span>Share this article</span>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(location.href)}" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(location.href)}&text=${encodeURIComponent(p.title)}" target="_blank" rel="noopener">X</a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location.href)}" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </article>
+      <aside class="sidebar">
+        <div class="side-card reveal">
+          <h4>Recent articles</h4>
+          <ul class="side-posts">${P.filter(x => x !== p).slice(0, 4).map(x => `<li><a href="${DS_POST_URL(x)}"><img src="${x.image}" alt="" loading="lazy"><span><strong>${x.title}</strong><em>${DS_POST_DATE(x)}</em></span></a></li>`).join("")}</ul>
+        </div>
+        <div class="side-card dark reveal d1">
+          <h4>Talk to a specialist</h4>
+          <p>Get a tailored plan for your business. No obligation.</p>
+          <a class="btn btn-primary btn-sm" href="contact.html">Book a call ${I("arrow")}</a>
+          <p style="margin:18px 0 0;font-size:14px"><a href="tel:+12816003570" style="color:#fff">${I("phone").replace("<svg","<svg style='width:14px;height:14px;vertical-align:-2px;margin-right:6px'")}(+1) 281 600 3570</a></p>
+        </div>
+      </aside>
+    </div>
+  </section>
+  <section class="section bg-soft">
+    <div class="container">
+      <div class="section-head split">
+        <div><span class="eyebrow reveal">Keep reading</span><h2 class="h-2 reveal d1" style="margin-top:18px">Related articles</h2></div>
+        <p class="reveal d2"><a class="btn btn-ghost" href="blog.html">View all articles ${I("arrow")}</a></p>
+      </div>
+      <div class="post-grid">${related.map((x, i) => DS_POST_CARD(x, i)).join("")}</div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="cta-band reveal">
+        <div><h2 class="h-1">Ready to put this into practice?</h2><p>Book a free consultation and get a tailored plan for your business.</p></div>
+        <div class="cta-side"><a class="btn btn-dark" href="contact.html">Get started ${I("arrow")}</a>
+          <div class="contact-mini"><a href="tel:+12816003570">${I("phone")}(+1) 281 600 3570</a><a href="mailto:info@dostsol.com">${I("mail")}info@dostsol.com</a></div></div>
+      </div>
+    </div>
+  </section>`;
+  DS_REVEAL();
+</script>
+</body>
+</html>

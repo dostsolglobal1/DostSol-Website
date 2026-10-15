@@ -174,6 +174,7 @@
           </div>
         </li>
         ${navItem("team.html", "Our Team", "team")}
+        ${navItem("blog.html", "Blog", "blog")}
         ${navItem("faq.html", "FAQ", "faq")}
         ${navItem("contact.html", "Contact", "contact")}
       </ul>
@@ -192,7 +193,7 @@
         ${SERVICES.map(s => `<a href="service.html?s=${s.slug}">${s.name}</a>`).join("")}
         <a href="services.html" style="color:var(--teal)">All services →</a>
       </details>
-      <a href="team.html">Our Team</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+      <a href="team.html">Our Team</a><a href="blog.html">Blog</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
     </nav>
     <a class="btn btn-primary" href="contact.html">Get a free consultation</a>
   </div>`;
@@ -217,7 +218,7 @@
         </ul></div>
         <div><h5>Company</h5><ul class="f-links">
           <li><a href="about.html">About us</a></li><li><a href="team.html">Our team</a></li>
-          <li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Careers</a></li>
+          <li><a href="blog.html">Blog</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Careers</a></li>
           <li><a href="contact.html">Contact</a></li><li><a href="#">Privacy policy</a></li>
         </ul></div>
         <div><h5>Get in touch</h5><div class="f-contact">

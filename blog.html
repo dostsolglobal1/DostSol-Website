@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog | DostSol Global</title>
+  <meta name="description" content="Insights on outsourcing, IT services, accounting and SEO for growing businesses, from the DostSol Global team.">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="blog">
+<div id="header-slot"></div>
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="crumbs reveal" aria-label="Breadcrumb"><a href="index.html">Home</a><span data-icon="chevR"></span><span class="here">Blog</span></nav>
+      <h1 class="h-display reveal d1">Insights for<br><span class="grad-text">growing businesses.</span></h1>
+      <p class="lead reveal d2">Practical guides on outsourcing, IT, accounting and digital marketing, written by the people who deliver it every day.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div id="featured"></div>
+      <div class="team-filter blog-filter reveal" role="group" aria-label="Filter posts" id="blogFilter"></div>
+      <div class="post-grid" id="postGrid"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-band reveal">
+        <div><h2 class="h-1">Have a question we haven't covered?</h2><p>Talk to our team about your goals. The first consultation is free.</p></div>
+        <div class="cta-side"><a class="btn btn-dark" href="contact.html">Get a free consultation <span data-icon="arrow"></span></a>
+          <div class="contact-mini"><a href="tel:+12816003570"><span data-icon="phone"></span>(+1) 281 600 3570</a><a href="mailto:info@dostsol.com"><span data-icon="mail"></span>info@dostsol.com</a></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+<div id="footer-slot"></div>
+<script src="js/site.js"></script>
+<script src="js/blog-data.js"></script>
+<script>
+  const P = DS_POSTS, I = DS_ICON;
+  const [lead, ...rest] = P;
+  const cats = ["All", ...new Set(P.map(p => p.category))];
+
+  document.getElementById("featured").innerHTML = `
+    <a class="post-featured reveal" href="${DS_POST_URL(lead)}">
+      <div class="pf-img"><img src="${lead.image}" alt=""></div>
+      <div class="pf-body">
+        <span class="post-cat">${lead.category}</span>
+        <h2 class="h-2">${lead.title}</h2>
+        <p>${lead.excerpt}</p>
+        <div class="post-meta">${DS_POST_DATE(lead)} · ${lead.mins} min read</div>
+        <span class="post-more">Read article ${I("arrow")}</span>
+      </div>
+    </a>`;
+
+  const filter = document.getElementById("blogFilter");
+  filter.innerHTML = cats.map((c, i) => `<button type="button" class="${i ? "" : "on"}" data-c="${c}">${c}</button>`).join("");
+
+  const grid = document.getElementById("postGrid");
+  const render = c => {
+    const list = c === "All" ? rest : P.filter(p => p.category === c);
+    document.getElementById("featured").hidden = c !== "All";
+    grid.innerHTML = list.map((p, i) => DS_POST_CARD(p, i)).join("");
+    DS_REVEAL(grid);
+  };
+  filter.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    filter.querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b));
+    render(b.dataset.c);
+  });
+  render("All");
+  DS_REVEAL();
+</script>
+</body>
+</html>
