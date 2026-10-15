@@ -672,6 +672,14 @@ html.static *, html.static *::before, html.static *::after { animation: none !im
   .bg-dark { border-top-color: var(--line-dark); }
   .section.no-divider, .section-sm.no-divider { border-top: 0; }
   .section.no-divider::before, .section-sm.no-divider::before { display: none; }
+
+  /* consistent left alignment on small screens */
+  .section-head.center { margin-left: 0; margin-right: 0; text-align: left; }
+  .center-cta, .marquee-band .label, .form-note, .benefit { text-align: left; }
+  .benefit .ic { margin: 0 0 14px; }
+  .team-filter { justify-content: flex-start; }
+  .sd-hero-icon { justify-content: flex-start !important; }
+  .hero-visual { margin: 0; }
 }
 @media (max-width: 640px) {
   .container { padding: 0 16px; }
